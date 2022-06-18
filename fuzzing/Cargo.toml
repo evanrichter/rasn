@@ -14,3 +14,8 @@ rasn = { path = ".." }
 rasn-snmp = { path = "../standards/snmp" }
 rasn-pkix = { path = "../standards/pkix" }
 afl = "0.8.0"
+
+[profile.release]
+debug-assertions = true
+overflow-checks = true
+debug = true

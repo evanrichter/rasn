@@ -1,0 +1,5 @@
+project: rasn
+target: rasn-fuzz
+
+cmds:
+  - cmd: /fuzz

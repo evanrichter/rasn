@@ -1,0 +1,123 @@
+[package]
+name = "rasn-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2018"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+rasn          = { path = "../.." }
+rasn-cms      = { path = "../../standards/cms" }
+rasn-kerberos = { path = "../../standards/kerberos" }
+rasn-ldap     = { path = "../../standards/ldap" }
+rasn-ocsp     = { path = "../../standards/ocsp" }
+rasn-pkix     = { path = "../../standards/pkix" }
+rasn-smi      = { path = "../../standards/smi" }
+rasn-smime    = { path = "../../standards/smime" }
+rasn-snmp     = { path = "../../standards/snmp" }
+
+# Prevent this from interfering with workspaces
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "cms_signeddata"
+path = "fuzz_targets/cms_signeddata.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "kerberos_enckdcreppart"
+path = "fuzz_targets/kerberos_enckdcreppart.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "kerberos_encticketpart"
+path = "fuzz_targets/kerberos_encticketpart.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "kerberos_kdcrep"
+path = "fuzz_targets/kerberos_kdcrep.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "kerberos_kdcreq"
+path = "fuzz_targets/kerberos_kdcreq.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "kerberos_ticket"
+path = "fuzz_targets/kerberos_ticket.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "ldap_message"
+path = "fuzz_targets/ldap_message.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "ldap_result"
+path = "fuzz_targets/ldap_result.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "ocsp_request"
+path = "fuzz_targets/ocsp_request.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "ocsp_response"
+path = "fuzz_targets/ocsp_response.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "pkix"
+path = "fuzz_targets/pkix.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "smime_encpreference"
+path = "fuzz_targets/smime_encpreference.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "snmpv1_getrequest"
+path = "fuzz_targets/snmpv1_getrequest.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "snmpv2c_message"
+path = "fuzz_targets/snmpv2c_message.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "snmpv2_getbulkrequest"
+path = "fuzz_targets/snmpv2_getbulkrequest.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "snmpv3_message"
+path = "fuzz_targets/snmpv3_message.rs"
+test = false
+doc = false
+
+[profile.release]
+debug = true

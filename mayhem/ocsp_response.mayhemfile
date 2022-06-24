@@ -1,0 +1,7 @@
+project: rasn
+target: ocsp_response
+
+cmds:
+  - cmd: /ocsp_response
+  - cmd: /ocsp_response_no_inst @@
+    libfuzzer: false

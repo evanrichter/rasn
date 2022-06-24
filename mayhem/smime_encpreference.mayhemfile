@@ -1,0 +1,7 @@
+project: rasn
+target: smime_encpreference
+
+cmds:
+  - cmd: /smime_encpreference
+  - cmd: /smime_encpreference_no_inst @@
+    libfuzzer: false

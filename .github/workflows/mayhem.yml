@@ -7,21 +7,11 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  RASN: mayhem/rasn.mayhemfile
 
 jobs:
   build:
-    name: '${{ matrix.os }} shared=${{ matrix.shared }} ${{ matrix.build_type }}'
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        shared: [false]
-        build_type: [Release]
-        include:
-          - os: ubuntu-latest
-            triplet: x64-linux
-
+    name: 'build mayhem fuzzing container'
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -47,11 +37,39 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Start analysis for RASN
+    outputs:
+      image: ${{ steps.meta.outputs.tags }}
+
+  mayhem:
+    needs: build
+    name: 'fuzz ${{ matrix.mayhemfile }}'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mayhemfile:
+          - mayhem/cms_signeddata.mayhemfile
+          - mayhem/kerberos_enckdcreppart.mayhemfile
+          - mayhem/kerberos_encticketpart.mayhemfile
+          - mayhem/kerberos_kdcrep.mayhemfile
+          - mayhem/kerberos_kdcreq.mayhemfile
+          - mayhem/kerberos_ticket.mayhemfile
+          - mayhem/ldap_message.mayhemfile
+          - mayhem/ldap_result.mayhemfile
+          - mayhem/ocsp_request.mayhemfile
+          - mayhem/ocsp_response.mayhemfile
+          - mayhem/pkix.mayhemfile
+          - mayhem/smime_encpreference.mayhemfile
+          - mayhem/snmpv1_getrequest.mayhemfile
+          - mayhem/snmpv2c_message.mayhemfile
+          - mayhem/snmpv2_getbulkrequest.mayhemfile
+          - mayhem/snmpv3_message.mayhemfile
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Start analysis for ${{ matrix.mayhemfile }}
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.RASN }} --duration 300
+          args: --image ${{ needs.build.outputs.image }} --file ${{ matrix.mayhemfile }} --duration 300
           sarif-output: sarif
-
-

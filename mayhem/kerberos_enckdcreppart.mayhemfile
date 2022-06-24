@@ -1,0 +1,7 @@
+project: rasn
+target: kerberos_enckdcreppart
+
+cmds:
+  - cmd: /kerberos_enckdcreppart
+  - cmd: /kerberos_enckdcreppart_no_inst @@
+    libfuzzer: false

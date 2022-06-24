@@ -1,0 +1,7 @@
+project: rasn
+target: snmpv2c_message
+
+cmds:
+  - cmd: /snmpv2c_message
+  - cmd: /snmpv2c_message_no_inst @@
+    libfuzzer: false

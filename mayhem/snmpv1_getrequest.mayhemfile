@@ -1,0 +1,7 @@
+project: rasn
+target: snmpv1_getrequest
+
+cmds:
+  - cmd: /snmpv1_getrequest
+  - cmd: /snmpv1_getrequest_no_inst @@
+    libfuzzer: false

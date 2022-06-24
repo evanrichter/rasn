@@ -1,0 +1,7 @@
+project: rasn
+target: snmpv2_getbulkrequest
+
+cmds:
+  - cmd: /snmpv2_getbulkrequest
+  - cmd: /snmpv2_getbulkrequest_no_inst @@
+    libfuzzer: false

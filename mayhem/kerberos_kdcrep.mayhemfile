@@ -1,0 +1,7 @@
+project: rasn
+target: kerberos_kdcrep
+
+cmds:
+  - cmd: /kerberos_kdcrep
+  - cmd: /kerberos_kdcrep_no_inst @@
+    libfuzzer: false

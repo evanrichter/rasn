@@ -1,0 +1,7 @@
+project: rasn
+target: kerberos_ticket
+
+cmds:
+  - cmd: /kerberos_ticket
+  - cmd: /kerberos_ticket_no_inst @@
+    libfuzzer: false

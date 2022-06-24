@@ -1,0 +1,7 @@
+project: rasn
+target: ldap_result
+
+cmds:
+  - cmd: /ldap_result
+  - cmd: /ldap_result_no_inst @@
+    libfuzzer: false

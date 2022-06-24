@@ -1,0 +1,7 @@
+project: rasn
+target: cms_signeddata
+
+cmds:
+  - cmd: /cms_signeddata
+  - cmd: /cms_signeddata_no_inst @@
+    libfuzzer: false

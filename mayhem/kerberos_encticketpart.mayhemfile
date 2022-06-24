@@ -1,0 +1,7 @@
+project: rasn
+target: kerberos_encticketpart
+
+cmds:
+  - cmd: /kerberos_encticketpart
+  - cmd: /kerberos_encticketpart_no_inst @@
+    libfuzzer: false

@@ -1,0 +1,7 @@
+project: rasn
+target: pkix
+
+cmds:
+  - cmd: /pkix
+  - cmd: /pkix_no_inst @@
+    libfuzzer: false

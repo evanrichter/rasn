@@ -1,0 +1,7 @@
+project: rasn
+target: ldap_message
+
+cmds:
+  - cmd: /ldap_message
+  - cmd: /ldap_message_no_inst @@
+    libfuzzer: false
